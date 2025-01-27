@@ -1,6 +1,5 @@
 using Hangfire;
 using HangfireExample.Application.Interfaces;
-using HangfireExample.Core.Jobs;
 
 namespace HangfireExample.Infrastructure.Services;
 
@@ -16,9 +15,9 @@ public class JobScheduler : IJobScheduler
         BackgroundJob.Schedule<T>(job => job.Execute(), delay);
     }
 
-    public void AddRecurringJob<T>(string cronExpression) where T : IJob
+    public void AddRecurringJob<T>(string jobName, string cronExpression) where T : IJob
     {
-        RecurringJob.AddOrUpdate<T>("recurring-job", job => job.Execute(), cronExpression);
+        RecurringJob.AddOrUpdate<T>(jobName, job => job.Execute(), cronExpression);
     }
 
     public void AddContinuationJob<TParent, TContinuation>() where TParent : IJob where TContinuation : IJob

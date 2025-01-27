@@ -1,10 +1,14 @@
 using Hangfire;
+using HangfireExample.Application.Models;
 using HangfireExample.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure(builder.Configuration); // Hangfire ve JobScheduler'ı ekler.
 builder.Services.AddControllers();
+
+builder.Services.Configure<CurrencyServiceOptions>(
+    builder.Configuration.GetSection("CurrencyService"));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

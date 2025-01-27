@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HangfireExample.Infrastructure\HangfireExample.Infrastructure.csproj" />
+    <ProjectReference Include="..\HangfireExample.Application\HangfireExample.Application.csproj" />
   </ItemGroup>
 
 </Project>
